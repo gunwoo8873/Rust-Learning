@@ -9,8 +9,8 @@ fn immutable_variable() {
     let immutable_number = 15;
     println!("{}", immutable_number);
 
-    // a = 20; // Error
-    // println!("{}", a);
+    // immutable_number = 20; // Error
+    // println!("{}", immutable_number);
 }
 /*
  * 변수는 기본적으로 { } 내에서만 유효하며 if문 { } 안에서 선언된 변수도 if문 안에서만 사용 가능하다.
