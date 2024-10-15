@@ -80,4 +80,5 @@ let value = [index]
 let name = value[index]
 
 let value: [type; index] = [index]
+let name = value[index]
 */
