@@ -8,3 +8,23 @@ edition = "2021"
 [[bin]]
 name = "variable"
 path = "src/bin/variables.rs"
+
+[[bin]]
+name = "datatype"
+path = "src/bin/datatype.rs"
+
+[[bin]]
+name = "operator"
+path = "src/bin/operator.rs"
+
+[[bin]]
+name = "function"
+path = "src/bin/function.rs"
+
+[[bin]]
+name = "branches"
+path = "src/bin/branches.rs"
+
+[[bin]]
+name = "thread"
+path = "src/bin/thread.rs"
