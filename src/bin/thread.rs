@@ -43,11 +43,32 @@ fn f()
 
 fn lock()
 {
-    let num = vec![1, 2, 3];
-    spawn(move || {
-        for n in num {
-            println!("lock : {}", n);
+    let a = vec![1, 2, 3];
+    spawn(move ||
+        {                     // move를 사용하지 않는다면 closure는 reference로 캡처[Capture] 하게되며 컴파일 에러가 발생한다.
+            for n in a
+            {
+                println!("lock : {}", n);
+            }
         }
-    })
-        .join().unwrap();
+    )
+        .join().unwrap();               // join Method가 호출될 때 Result로 감싸져 리턴된다.
+
+
+    let b = Vec::from_iter(0..=1000);
+    let b_thread = spawn(move ||
+        {
+            let len = b.len();
+            let sum = b.into_iter().sum::<usize>();
+            sum / len
+        }
+    );
+    /*
+    thread::spawn은 thread::Builder::new().spawn().unwrap()를 대체하여 간편하기 사용 위한 형태다.
+    Builder는 여러 옵션 설정이 가능하며 Stack Memory Size와 Label을 붙일 수 있다.
+    label name 확인은 current().name() 통해 확인이 가능하다.
+    */
+
+    let average = b_thread.join().unwrap();
+    println!("Average Thread Value: {}", average);
 }
