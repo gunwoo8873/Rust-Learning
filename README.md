@@ -5,9 +5,11 @@
     cargo build
     cargo run --bin [bin_name]
     ```
-
+# Bin Name list
 1. Variables
 2. Datatype
 3. Operator
-4. function
-5. branches
+4. Function
+5. Branches
+6. Ownership
+7. Thread
