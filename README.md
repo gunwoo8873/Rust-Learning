@@ -13,3 +13,34 @@
 5. Branches
 6. Ownership
 7. Thread
+
+# Build Check
+```bash
+cargo clean
+```
+
+```bash
+cargo build
+```
+
+```bash
+time cargo check
+```
+
+# Toolchain Change
+> Rust Toolchain 중 Stable, Beta, Nightly 가 설치되어 있어야 한다.
+
+```bash
+cargo +[version] test
+```
+
+```bash
+cargo +stable test
+cargo +beta test
+cargo +nightly test
+```
+
+# Crate Lib Version Check
+```cargo.toml
+lib = {version ~ "x,y,z"}
+```
