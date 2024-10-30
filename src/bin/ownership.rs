@@ -6,11 +6,9 @@ fn main() {
     slice_fn();
 }
 
-/*
-ownership 은 Rust 의 메모리 관리법을 지배하는 규칙 모음이다. 어떤 언어들은 GC[Garbage Collector]으로 더 이상
-사용하지 않는 메모리를 정기적으로 찾는 방식을 채택하고 혹은 직접 사용자가 메모리를 할당 및 해제 하는 방식을 채택했다.
-Rust 는 이 방식을 개선하여 GC가 없이 메모리 안정성을 보장하도록 시스템을 설계 했다.
-*/
+// Note : ownership 은 Rust 의 메모리 관리법을 지배하는 규칙 모음이다. 어떤 언어들은 GC[Garbage Collector]으로 더 이상
+//        사용하지 않는 메모리를 정기적으로 찾는 방식을 채택하고 혹은 직접 사용자가 메모리를 할당 및 해제 하는 방식을 채택했다.
+//        Rust 는 이 방식을 개선하여 GC가 없이 메모리 안정성을 보장하도록 시스템을 설계 했다.
 
 fn owner() { // { } = Scope 라고 칭하며 코드가 수행을 하는 동안 유효한 블럭이다.
     let mut lifecode = String::from("Code");
@@ -56,9 +54,7 @@ fn borrowing() {
 fn borrowing_take_fn(x: &mut String) {
     x.push_str(", Return Variable");
 }
-/*
-& 을 사용하여 해당 값을 소유하지 않지만 참조자를 생성하여 LifeTime 이 끝나더 라도 유효한 코드로 남아 있게 된다.
-*/
+// Note : & 을 사용하여 해당 값을 소유하지 않지만 참조자를 생성하여 LifeTime 이 끝나더 라도 유효한 코드로 남아 있게 된다.
 
 fn slice_fn() {
     let mut s = String::from("Return Slice");
