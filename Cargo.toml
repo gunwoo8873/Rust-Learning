@@ -1,10 +1,11 @@
 [package]
 name = "Rust-Learn"
 version = "0.1.0"
+authors = ["choigunwoo <gunwoo8873@outlook.kr"]
 edition = "2021"
 
 [dependencies]
-rand = "~ 0.8.5"
+rand = "~ 0.8.*"
 
 [[bin]]
 name = "variable"
