@@ -3,11 +3,11 @@ name : Rust learn Action
 on :
   push :
     branches : [ "main" ]
-    paths    : [ "./src/bin/*", "../Cargo.toml" ]
+    paths    : [ "./src/bin/*" ]
   workflow_dispatch:
 
 env :
-  RUST_VERSION : stable
+  RUST_VERSION : self-hosted
 
 jobs:
   Setup:
