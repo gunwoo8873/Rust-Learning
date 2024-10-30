@@ -18,7 +18,7 @@ fn main()
 
 fn j1()
 {
-    let a = spawn(f);
+    let a = spawn(j_f);
     println!("J1 Thread");
 
     a.join().unwrap();
@@ -30,13 +30,13 @@ fn j1()
 
 fn j2()
 {
-    let a = spawn(f);
+    let a = spawn(j_f);
     println!("J2 Thread");
 
     a.join().unwrap(); // J1의 코드들이 수행이 끝날 때 까지 대기한다.
 }
 
-fn f()
+fn j_f()
 {
     println!("Another thread");
 
@@ -90,8 +90,8 @@ fn scope_thread()
         }
     );
 
-    static b: [i32; 5] = [1, 2, 3, 4, 5]; // static으로 선언된 변수는 initalizer를 갖고 드랍되지 않은 상태에서 생성된다.
-    spawn(|| dbg!(&b)); // dbg! : Debug Output
+    static B: [i32; 5] = [1, 2, 3, 4, 5]; // static으로 선언된 변수는 initalizer를 갖고 드랍되지 않은 상태에서 생성된다.
+    spawn(|| dbg!(&B)); // dbg! : Debug Output
 
 
     let c: &'static [i32; 5] = Box::leak(Box::new([1, 2, 3, 4, 5]));
@@ -109,8 +109,8 @@ fn counting_thread()
 
     assert_eq!(a.as_ptr(), b.as_ptr()); // a와 b의 raw pointer를 같은지 비교
 
-    // Note : as_ptr는 if의 == 연산자와 비슷한 성격을 가지고 있다. 같은 위치를 가리키고 있는지 확인하여
-    //        메모리 주소를 가리키는 raw pointer를 얻는다. [Waring : 메모리의 안전성을 보장받지 못하는 코드다.]
+    // Note : as_ptr는 if의 == 연산자와 비슷한 성격을 가지고 있다. 같은 위치를 가리키고 있는지 확인하여,
+    //        메모리 주소를 가리키는 raw pointer를 얻는다. [Waring : 메모리의 안전성을 보장받지 못하는 코드다. = unsafe]
     //        assert_eq!는 두 개의 값이 같은지 확인하여, 수행을 이어서 하지만 다르다면 즉시 실행을 중단하고
     //        Panic이 발생한다. [즉 오류가 발생하여 오류에 대한 MSG를 출력]
 }
