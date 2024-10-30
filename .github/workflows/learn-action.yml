@@ -3,7 +3,7 @@ name : Rust learn Action
 on :
   push :
     branches : [ "main" ]
-    paths    : [ "./src/bin/*" ]
+#    paths    : [ "./src/bin/*" ]
   workflow_dispatch:
 
 env :
