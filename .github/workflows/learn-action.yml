@@ -3,11 +3,8 @@ name : Rust learn Action
 on :
   push :
     branches : [ "main" ]
-#    paths    : [ "./src/bin/*" ]
+    paths    : [ "./src/bin/*" ]
   workflow_dispatch:
-
-env :
-  RUST_VERSION : stable
 
 jobs:
   Setup:
@@ -20,5 +17,5 @@ jobs:
         uses : actions-rust-lang/setup-rust-toolchain@v1  # Waring : Uses와 Run을 함께 사용하지 못한다.
 
       - name : Learn Bin Cargo run
-        run : |
-          cargo run --bin variable
+        run: |
+          find ./src/bin -type f -executable | xargs -I {} basename {} | xargs -I {} cargo run --bin {}
