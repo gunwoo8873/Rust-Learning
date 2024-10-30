@@ -4,6 +4,7 @@ on :
   push :
     branches : [ "main" ]
     paths    : [ "../src/bin/*", "../Cargo.toml" ]
+  workflow_dispatch:
 
 env :
   RUST_VERSION : nightly
