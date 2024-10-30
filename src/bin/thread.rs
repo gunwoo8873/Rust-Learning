@@ -17,6 +17,7 @@ fn main()
     lock_thread();
     scope_thread();
     counting_thread();
+    arc_thread();
 }
 
 fn j1()
@@ -68,7 +69,7 @@ fn lock_thread()
         }
     );
 
-    // Noti : thread::spawn은 thread::Builder::new().spawn().unwrap()를 대체하여 간편하기 사용 위한 형태다.
+    // Note : thread::spawn은 thread::Builder::new().spawn().unwrap()를 대체하여 간편하기 사용 위한 형태다.
     //        Builder는 여러 옵션 설정이 가능하며 Stack Memory Size와 Label을 붙일 수 있다.
     //        label name 확인은 current().name() 통해 확인이 가능하다. [Panic MSG에 포함되어 Monitoring Tool에서 확인 할 수 있다.
 
@@ -110,10 +111,19 @@ fn counting_thread()
     let a = Rc::new([1, 2, 3]);
     let b = a.clone();       // a = [1,2,3]을 복사
 
-    assert_eq!(a.as_ptr(), b.as_ptr()); // a와 b의 raw pointer를 같은지 비교
+    assert_eq!(a.as_ptr(), b.as_ptr()); // a와 b의 raw pointer를 같은지 비교하고, 같은 메모리를 가리킨다.
 
     // Note : as_ptr는 if의 == 연산자와 비슷한 성격을 가지고 있다. 같은 위치를 가리키고 있는지 확인하여,
     //        메모리 주소를 가리키는 raw pointer를 얻는다. [Waring : 메모리의 안전성을 보장받지 못하는 코드다. = unsafe]
     //        assert_eq!는 두 개의 값이 같은지 확인하여, 수행을 이어서 하지만 다르다면 즉시 실행을 중단하고
     //        Panic이 발생한다. [즉 오류가 발생하여 오류에 대한 MSG를 출력]
+}
+
+fn arc_thread()
+{
+    let a = Arc::new([1, 2, 3]);
+    let b = a.clone();
+
+    spawn(move || dbg!{a});
+    spawn(move || dbg!(b));
 }
