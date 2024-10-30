@@ -17,13 +17,9 @@ jobs:
         uses : actions/checkout@v4
 
       - name : Install Rust Toolchain
-        uses : actions-rs/toolchain@v1
+        uses : actions-rs/toolchain@v1        # Waring : Uses와 Run을 함께 사용하지 못한다.
         with :
           toolchain : ${{ env.RUST_VERSION }}
-        run  : |
-          cargo clean &&\
-          cargo build &&\
-          time cargo check
 
       - name : Learn Bin Cargo run
         run : |
