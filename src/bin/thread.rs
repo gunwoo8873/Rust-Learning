@@ -3,7 +3,10 @@ use std::thread::{  // std : 표준 내장 라이브러리 [모든 Thread에 고
     current,        // current : 현재 수행중인 Thread에 대한 Handle을 반환하는 Module이다.
     scope,          // scope : 특정 Scope 에서만 존재하면 해당 범위에서 존재하는 지역 변수의 소유권을 빌려올 수 있다.
 };
-use std::rc::{Rc};
+
+// Rc, Arc 는 Reference Counting을 통해 데이터 소유권을 어려 범위에서 공유할 수 있도록 하는 Pointer다.
+use std::rc::{Rc};  // Rc  : 단일 Thread 환경 한정으로 Atomic 연산을 사용하지 않아 속도는 Arc보다 빠르다.
+use std::sync::Arc; // Arc : Multi Thread 환경 한정으로 Atomic 연산을 사용하지만 속도는 Rc보다 느리다.
 
 fn main()
 {
