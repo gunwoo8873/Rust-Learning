@@ -3,12 +3,11 @@ name : Rust learn Action
 on :
   push :
     branches : [ "main" ]
-    paths    : [ "../src/bin/*", "../Cargo.toml" ]
+    paths    : [ "./src/bin/*", "../Cargo.toml" ]
   workflow_dispatch:
 
 env :
-  RUST_VERSION : nightly
-  RUN_FILES : "./src/bin/*"
+  RUST_VERSION : stable
 
 jobs:
   Setup:
@@ -24,4 +23,4 @@ jobs:
 
       - name : Learn Bin Cargo run
         run : |
-          cargo run --bin ${{ env.RUN_FILES }}
+          find ./src/bin -type f -executable | xargs -I {} basename {} | xargs -I {} cargo run --bin {}
