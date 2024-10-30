@@ -41,6 +41,7 @@ cargo +nightly test
 ```
 
 # Crate Lib Version Check
-```cargo.toml
-lib = {version ~ "x,y,z"}
-```
+| Operator | EX      | Min      | Max     | Update Check |
+|----------|---------|----------|---------|--------------|
+| ^        | ^ 1.1.0 | >= 1.1.0 | < 2.0.0 | Yes          | 
+| ~        | ~ 1.2.3 | >= 1.2.3 | < 1.3.0 | Yes          |
