@@ -4,7 +4,6 @@ on :
   push :
     branches : [ "main" ]
     paths    : [ "../src/bin/*", "../Cargo.toml" ]
-    paths-ignore : [ "*.md ", "**.jpg", "**.svg", ".idea", "Cargo.lock", ".gitignore"]
 
 env :
   RUST_VERSION : nightly
