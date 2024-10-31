@@ -9,7 +9,7 @@ env :
   RUST_INSTALL_VERSION : stable
 
   CREATES_TOKEN : ${{ secret.CREATES_REGISTRY }} # Create.io Account Token
-  GITHUB_REPO   : ${{ github.ref }}
+  #GITHUB_REPO   : ${{ github.ref }}
 
 jobs:
   Setup:
@@ -21,8 +21,4 @@ jobs:
       - name : Install Rust Toolchain
         uses : actions-rust-lang/setup-rust-toolchain@v1 # Why need use the Rust Toolchain?
         with :
-          toolchain : ${{ env.RUST_INSTALL_VERSION }} # Default Toolchain : Stable
-
-      - name : Rust Run
-        run  : |
-          cargo run --bin datatpye
+          toolchain : ${{ env.RUST_INSTALL_VERSION }} # Default Toolchain : Stable [OK]
