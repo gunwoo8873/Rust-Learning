@@ -5,7 +5,7 @@ use std::thread::{  // std : 표준 내장 라이브러리 [모든 Thread에 고
 };
 
 // Rc, Arc 는 Reference Counting을 통해 데이터 소유권을 어려 범위에서 공유할 수 있도록 하는 Pointer다.
-use std::rc::{Rc};  // Rc  : 단일 Thread 환경 한정으로 Atomic 연산을 사용하지 않아 속도는 Arc보다 빠르다.
+use std::rc::Rc;  // Rc  : 단일 Thread 환경 한정으로 Atomic 연산을 사용하지 않아 속도는 Arc보다 빠르다.
 use std::sync::Arc; // Arc : Multi Thread 환경 한정으로 Atomic 연산을 사용하지만 속도는 Rc보다 느리다.
 
 fn main()
@@ -26,11 +26,10 @@ fn j1()
     println!("J1 Thread");
 
     a.join().unwrap();
-
-    // Noti : spawn 함수에서 리턴된 joinHandle을 사용하며 작업이 끝날 때까지 main 대기한다.
-    //        join() : thread::Result를 리턴한다 Result는 에러가 발생하면 Panic의 MSG 를 포함하여 출력한다.
-    //        unwrap() : 해당 Thread의 작업이 종료될 때 Panic을 발생 시킬수 있다.
 }
+// Noti : spawn 함수에서 리턴된 joinHandle을 사용하며 작업이 끝날 때까지 main 대기한다.
+//        join() : thread::Result를 리턴한다 Result는 에러가 발생하면 Panic의 MSG 를 포함하여 출력한다.
+//        unwrap() : 해당 Thread의 작업이 종료될 때 Panic을 발생 시킬수 있다.
 
 fn j2()
 {
@@ -69,13 +68,12 @@ fn lock_thread()
         }
     );
 
-    // Note : thread::spawn은 thread::Builder::new().spawn().unwrap()를 대체하여 간편하기 사용 위한 형태다.
-    //        Builder는 여러 옵션 설정이 가능하며 Stack Memory Size와 Label을 붙일 수 있다.
-    //        label name 확인은 current().name() 통해 확인이 가능하다. [Panic MSG에 포함되어 Monitoring Tool에서 확인 할 수 있다.
-
     let average = b_thread.join().unwrap();
     println!("Average Thread Value: {}", average);
 }
+// Note : thread::spawn은 thread::Builder::new().spawn().unwrap()를 대체하여 간편하기 사용 위한 형태다.
+//        Builder는 여러 옵션 설정이 가능하며 Stack Memory Size와 Label을 붙일 수 있다.
+//        label name 확인은 current().name() 통해 확인이 가능하다. [Panic MSG에 포함되어 Monitoring Tool에서 확인 할 수 있다.
 
 fn scope_thread()
 {
@@ -100,11 +98,10 @@ fn scope_thread()
 
     let c: &'static [i32; 5] = Box::leak(Box::new([1, 2, 3, 4, 5]));
     spawn(move || dbg!(c));
-
-    // Waring : 강제로 누수[leaking] 발생 시키는 방법이니 실제 적용은 권장하지 않는다.
-    //          또한 Box는 별도의 use를 사용하지 않고 코드 범위 안에서 사용하는 것 같다.
-    //          'static의 라이프타임은 프로그램이 종료될 때 까지 유지되어 메모리의 누수가 발생한다.
 }
+// Waring : 강제로 누수[leaking] 발생 시키는 방법이니 실제 적용은 권장하지 않는다.
+//          또한 Box는 별도의 use를 사용하지 않고 코드 범위 안에서 사용하는 것 같다.
+//          'static의 라이프타임은 프로그램이 종료될 때 까지 유지되어 메모리의 누수가 발생한다.
 
 fn counting_thread()
 {
@@ -112,12 +109,11 @@ fn counting_thread()
     let b = a.clone();       // a = [1,2,3]을 복사
 
     assert_eq!(a.as_ptr(), b.as_ptr()); // a와 b의 raw pointer를 같은지 비교하고, 같은 메모리를 가리킨다.
-
-    // Note : as_ptr는 if의 == 연산자와 비슷한 성격을 가지고 있다. 같은 위치를 가리키고 있는지 확인하여,
-    //        메모리 주소를 가리키는 raw pointer를 얻는다. [Waring : 메모리의 안전성을 보장받지 못하는 코드다. = unsafe]
-    //        assert_eq!는 두 개의 값이 같은지 확인하여, 수행을 이어서 하지만 다르다면 즉시 실행을 중단하고
-    //        Panic이 발생한다. [즉 오류가 발생하여 오류에 대한 MSG를 출력]
 }
+// Note : as_ptr는 if의 == 연산자와 비슷한 성격을 가지고 있다. 같은 위치를 가리키고 있는지 확인하여,
+//        메모리 주소를 가리키는 raw pointer를 얻는다. [Waring : 메모리의 안전성을 보장받지 못하는 코드다. = unsafe]
+//        assert_eq!는 두 개의 값이 같은지 확인하여, 수행을 이어서 하지만 다르다면 즉시 실행을 중단하고
+//        Panic이 발생한다. [즉 오류가 발생하여 오류에 대한 MSG를 출력]
 
 fn arc_thread()
 {
@@ -127,3 +123,8 @@ fn arc_thread()
     spawn(move || dbg!{a});
     spawn(move || dbg!(b));
 }
+// Note : Send : 타입의 값과 소요권을 다른 Thread에 이전을 하고 싶다면 Send Trait를 구현하면 된다.
+//        Sync : 타입의 값을 여러 Thread에 공유하고 싶다라면 Sync Trait로 구현하면 된다.
+//        bool과 str 같은 원시 타입들은 Send와 Sync를 모두 구현하고 있기 때문에 필요한 구조체 필드의
+//        타입에 따라서 구조체에 해당 트레이트가 자동으로 구현되는 것을 Auto Trait라고 칭한다.
+//        T 타입으로 인식을 하지만 실제로 해당 타입은 존재하지 않아 크기가 0인 메모리를 차지하지 않는다.
