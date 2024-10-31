@@ -3,19 +3,26 @@ name : Rust learn Action
 on :
   push :
     branches : [ "main" ]
-    paths    : [ "./src/bin/*" ]
   workflow_dispatch:
+
+env :
+  RUST_INSTALL_VERSION : stable
+
+  CREATES_TOKEN : ${{ secret.CREATES_REGISTRY }} # Create.io Account Token
+  GITHUB_REPO   : ${{ github.ref }}
 
 jobs:
   Setup:
-    runs-on : self-hosted
-    steps :
+    runs-on  : self-hosted
+    steps:
       - name : Checkout
         uses : actions/checkout@v4
 
       - name : Install Rust Toolchain
-        uses : actions-rust-lang/setup-rust-toolchain@v1  # Waring : Uses와 Run을 함께 사용하지 못한다.
+        uses : actions-rust-lang/setup-rust-toolchain@v1 # Why need use the Rust Toolchain?
+        with :
+          toolchain : ${{ env.RUST_INSTALL_VERSION }} # Default Toolchain : Stable
 
-      - name : Learn Bin Cargo run
-        run: |
-          find ./src/bin -type f -executable | xargs -I {} basename {} | xargs -I {} cargo run --bin {}
+      - name : Rust Run
+        run  : |
+          cargo run --bin datatpye
