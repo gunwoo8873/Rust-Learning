@@ -8,8 +8,8 @@ on :
 env :
   RUST_INSTALL_VERSION : stable
 
-  CREATES_TOKEN : ${{ secret.CREATES_REGISTRY }} # Create.io Account Token
-  #GITHUB_REPO   : ${{ github.ref }}
+#  CREATES_TOKEN : ${{ secret.CREATES_REGISTRY }} # Create.io Account Token
+#  GITHUB_REPO   : ${{ github.ref }}
 
 jobs:
   Setup:
