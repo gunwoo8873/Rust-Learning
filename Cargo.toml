@@ -7,27 +7,30 @@ edition = "2021"
 [dependencies]
 rand = {version = "~ 0.8.*"}
 
-
-[[bin]]
-name = "variable"
-path = "src/bin/variables.rs"
-
 [[bin]]
 name = "datatype"
-path = "src/bin/datatype.rs"
+path = "src/bin/1_datatype.rs"
 
 [[bin]]
 name = "operator"
-path = "src/bin/operator.rs"
+path = "src/bin/2_operator.rs"
 
 [[bin]]
 name = "function"
-path = "src/bin/function.rs"
+path = "src/bin/3_function.rs"
 
 [[bin]]
 name = "branches"
-path = "src/bin/branches.rs"
+path = "src/bin/4_branches.rs"
+
+[[bin]]
+name = "ownership"
+path = "src/bin/5_ownership.rs"
+
+[[bin]]
+name = "variable"
+path = "src/bin/6_variables.rs"
 
 [[bin]]
 name = "thread"
-path = "src/bin/thread.rs"
+path = "src/bin/7_thread.rs"
