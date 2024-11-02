@@ -36,5 +36,5 @@ name = "thread"
 path = "src/bin/7_thread.rs"
 
 [[bin]]
-name = "thread"
+name = "method"
 path = "src/bin/8_method.rs"
