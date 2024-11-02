@@ -6,13 +6,13 @@
     cargo run --bin [bin_name]
     ```
 # Bin Name list
-1. Variables
-2. Datatype
-3. Operator
-4. Function
-5. Branches
-6. Ownership
-7. Thread
+1. Datatype [Update : 24. 11. 02]
+2. Operator [Update : 24. 10. 31]
+3. Function [Update : 24. 11. 02]
+4. Branches [Update : 24. 11. 02]
+5. Ownership [Update : 24. 10. 30]
+6. Variables [Update : 24. 10. 30]
+7. Thread [Update : 24. 10. 30]
 
 # Build Check
 ```bash
