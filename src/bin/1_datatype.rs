@@ -13,14 +13,14 @@ struct IntegerDatatype
 
 fn integer_type()
 {
-    let int_datatype = IntegerDatatype
+    let int_type = IntegerDatatype
     {
         signed: -1,
         unsigned: 0,
     };
 
-    println!("Signed : {}", int_datatype.signed);
-    println!("Unsigned : {}", int_datatype.unsigned);
+    println!("Signed : {}", int_type.signed);
+    println!("Unsigned : {}", int_type.unsigned);
 }
 // Note : 정수형 타입 [Integer Typed]
 //        8 ~ 128 bit
@@ -35,14 +35,14 @@ struct FloatDatatype
 
 fn float_type()
 {
-    let flat_datatype = FloatDatatype
+    let flat_type = FloatDatatype
     {
         f32_float: 20.000,
         f64_float: 20.000,
     };
 
-    println!("Float f32 Datatype : {:.2}", flat_datatype.f32_float);
-    println!("Float f64 Datatype : {:.1}", flat_datatype.f64_float);
+    println!("Float f32 Datatype : {:.2}", flat_type.f32_float);
+    println!("Float f64 Datatype : {:.1}", flat_type.f64_float);
 }
 
 // Note : 부동소수점 타입 [Float Typed]
