@@ -6,21 +6,55 @@ pub fn main() {
     array();
 }
 
+struct Int
+{
+    num_a: i32,
+    num_b: i32,
+}
+
+impl Int
+{
+    fn sum(&self) -> i32
+    {
+        self.num_a + self.num_b
+    }
+
+    fn difference(&self) -> i32
+    {
+        self.num_a - self.num_b
+    }
+
+    fn product(&self) -> i32
+    {
+        self.num_a * self.num_b
+    }
+
+    fn quotient(&self) -> i32
+    {
+        self.num_a / self.num_b
+    }
+
+    fn remainder(&self) -> i32
+    {
+        self.num_a % self.num_b
+    }
+}
+
 fn elementary_arithmetic() {
-    let sum = 1 + 2;
-    println!("sum : {}", sum);
+    let sum_result = Int {num_a: 10, num_b: 20};
+    println!("Sum : {}", sum_result.sum());
 
-    let difference = 100.05 - 40.15;
-    println!("difference : {}", difference);
+    let diff_result = Int {num_a: 10, num_b: 20};
+    println!("Diff : {}", diff_result.difference());
 
-    let product = 4 * 30;
-    println!("product : {}", product);
+    let product_result = Int {num_a: 10, num_b: 20};
+    println!("Product : {}", product_result.product());
 
-    let quotient = 56.7 / 32.2;
-    println!("quotient : {:.2}", quotient); // {:.num} = 소수점 자릿수 설정
+    let quotient_result = Int {num_a: 10, num_b: 20};
+    println!("Quotient : {}", quotient_result.quotient());
 
-    let remainder = 43 % 5;
-    println!("remainder : {}", remainder);
+    let remainder_result = Int {num_a: 10, num_b: 20};
+    println!("Remainder : {}", remainder_result.remainder());
 }
 
 fn boolean() {
