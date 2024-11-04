@@ -13,6 +13,7 @@
 5. Ownership [Update : 24. 10. 30]
 6. Variables [Update : 24. 10. 30]
 7. Thread [Update : 24. 10. 30]
+8. Method [Update : 24. 11. 04]
 
 # Build Check
 ```bash
