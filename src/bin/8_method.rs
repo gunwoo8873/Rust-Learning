@@ -6,6 +6,7 @@ struct User
     password: String,
     active: bool,
 }
+// Note : struct를 구조체라는 Field 명칭이 있다. 한 가지의 Data type을 가지는 것이 아닌 각 다른 type을 명시가 가능하다.
 
 fn main()
 {
@@ -34,12 +35,11 @@ fn instance()
     println!("User Password : {:?}", user_field_a.password); // Result : Not Update
     println!("User Active   : {:?}", user_field_a.active);   // Result : Not Update
 
-
     let mut user_field_b = User
     {
         username: String::from("User3"),
         email: String::from("user3@github.com"),
-            ..user_field_a // user_field_a의 나머지 Instance Field를 가져온다.
+            ..user_field_a // user_field_a의 나머지 Instance Field를 가져온다. [단 Value가 동일하다 라는 전제하에 권장]
     };
 
     println!("Field B");
@@ -48,6 +48,8 @@ fn instance()
     println!("User Password : {:?}", user_field_b.password);  // Result : Not Update
     println!("User Active   : {:?}", user_field_b.active);    // Result : Not Update
 }
+// Note : 이 코드는 Instance라고 칭하며 각 필드에 대한 구체적인 값을 명시하여 Key:Value 형식으로 추가해야 한다.
+//        하지만 반드시 struct를 정의했을 때 동일하지 않아도 된다.
 
 fn short(username: String, email: String, password: String) -> User
 {
