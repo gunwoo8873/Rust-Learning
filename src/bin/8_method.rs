@@ -82,3 +82,47 @@ fn tuple()
 
     println!("{}", hex);
 }
+
+enum Iptype
+{
+    V4,
+    V6,
+}
+
+struct Ipv4
+{
+    kind: Iptype,
+    address: String,
+    port: u16,
+}
+
+struct Ipv6
+{
+    kind: Iptype,
+    address: String,
+}
+
+fn enum_fn()
+{
+    let ipv4 = Ipv4
+    {
+        kind: Iptype::V4,
+        address: String::from("127.0.0.1"),
+        port: 8888,
+    };
+
+    let ipv6 = Ipv6
+    {
+        kind: Iptype::V6,
+        address: String::from("::1"),
+    };
+}
+
+fn enum_match(ip: Iptype) -> String
+{
+    match ip
+    {
+        Iptype::V4 => String::from("V4"),
+        Iptype::V6 => String::from("V6"),
+    }
+}
