@@ -38,3 +38,7 @@ path = "src/bin/7_thread.rs"
 [[bin]]
 name = "method"
 path = "src/bin/8_method.rs"
+
+[[bin]]
+name = "option"
+path = "src/bin/9_Options.rs"
